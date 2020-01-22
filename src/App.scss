@@ -1,0 +1,49 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+.header {
+  padding: 0.5rem;
+  margin-bottom: 0.25rem;
+  border-bottom: 1px solid lightgrey;
+  .searchInput {
+    float: right;
+  }
+  .searchIcon {
+    float: right;
+  }
+}
+.content {
+  height: 100%;
+  .line {
+    background-color: blue;
+    width: 5px;
+    height: 100%;
+  }
+  .time {
+    font-size: 14px;
+  }
+  .avatar {
+    img {
+      max-width: 50px;
+      max-height: 50px;
+      border-radius: 999px;
+      margin: 0.25rem;
+    }
+    display: flex;
+    align-items: center;
+  }
+  .commentCount {
+    float: right;
+    margin: 1rem;
+    padding: 0.25rem;
+    border: 1px solid lightgrey;
+    border-radius: 999px;
+    display: inline-block;
+  }
+  p {
+    margin-left: calc(50px + 0.25rem);
+    display: inline-block;
+  }
+}
