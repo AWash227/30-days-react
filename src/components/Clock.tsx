@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 interface ClockState {
   hours: number;
   minutes: number;
@@ -14,6 +15,11 @@ class Clock extends React.Component<{}, ClockState> {
   }
   componentDidMount() {
     this.setTimer();
+  }
+  componentWilUnmount() {
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
   }
 
   setTimer() {
@@ -45,5 +51,16 @@ class Clock extends React.Component<{}, ClockState> {
     );
   }
 }
+
+//@ts-ignore
+Clock.propTypes = {
+  title: PropTypes.string,
+  count: PropTypes.number,
+  isOn: PropTypes.bool,
+  onDisplay: PropTypes.func,
+  symbol: PropTypes.symbol,
+  user: PropTypes.object,
+  name: PropTypes.node
+};
 
 export default Clock;

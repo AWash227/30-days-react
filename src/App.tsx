@@ -2,6 +2,7 @@ import React from "react";
 import "./App.scss";
 import Header from "./components/Header";
 import Content from "./components/Content";
+import Footer from "./components/Footer";
 import Clock from "./components/Clock";
 import { data } from "./data";
 const activities = [
@@ -27,12 +28,48 @@ const activities = [
   }
 ];
 
-export const App = () => (
-  <div className="notificationsFrame">
-    <div className="panel">
-      <Header title="Title Works!" />
-      <Content />
-      <Clock />
-    </div>
-  </div>
-);
+const fetchEvents = () => data;
+
+interface IApp {
+  refreshing: boolean;
+}
+class App extends React.Component<{}, IApp> {
+  constructor(props) {
+    super(props);
+
+    this.state = { refreshing: false };
+  }
+
+  refresh() {
+    this.setState({ refreshing: true });
+  }
+
+  onComponentRefresh() {
+    this.setState({ refreshing: false });
+  }
+
+  render() {
+    const { refreshing } = this.state;
+    return (
+      <div className="notificationsFrame">
+        <div className="panel">
+          <Header title="Github Activity" />
+          <Content
+            onComponentRefresh={this.onComponentRefresh.bind(this)}
+            requestRefresh={refreshing}
+            fetchData={fetchEvents}
+          />
+          <Footer>
+            <button onClick={this.refresh.bind(this)}>
+              <i className="fa fa-refresh" />
+              Refresh
+            </button>
+          </Footer>
+          <Clock />
+        </div>
+      </div>
+    );
+  }
+}
+
+export default App;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 interface IHeader {
   title: string;
@@ -21,5 +22,10 @@ class Header extends React.Component<IHeader> {
     );
   }
 }
+
+//@ts-ignore
+Header.propTypes = {
+  title: PropTypes.string
+};
 
 export default Header;
